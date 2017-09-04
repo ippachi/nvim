@@ -1,0 +1,26 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+
+[[plugins]]
+repo = 'Shougo/deoplete-rct'
+
+[[plugins]]
+repo = 'Shougo/Unite.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+hook_add = 'let g:vimfiler_as_default_explorer = 1'
+
+[[plugins]]
+repo = 'chriskempson/vim-tomorrow-theme'
+hook_add = 'colorscheme Tomorrow-Night'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = """
+let g:indentLine_color_term = 239
+let g:indentLine_char = '|'
+let g:indentLine_conceallevel = 2
+"""
+
