@@ -60,6 +60,14 @@ set wrapscan
 set hlsearch
 set virtualedit=onemore
 set autoindent
+filetype indent on
+
+let _curfile=expand("%:r")
+if _curfile == 'makefile' || 'Makefile'
+  set noexpandtab
+endif
+
+autocmd BufWritePre * :%s/\s\+$//ge
 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>

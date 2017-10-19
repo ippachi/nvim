@@ -1,0 +1,26 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/deoplete-rct'
+on_ft = ['rb']
+on_i = 1
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'eruby']
+on_i = 1
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_i = 1
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = ['coffee']
+
+[[plugins]]
+repo = 'slim-template/vim-slim.git'
+on_ft = ['slim']
