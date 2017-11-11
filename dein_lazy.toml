@@ -5,7 +5,7 @@ on_i = 1
 
 [[plugins]]
 repo = 'Shougo/deoplete-rct'
-on_ft = ['rb']
+on_ft = ['ruby']
 on_i = 1
 
 [[plugins]]
