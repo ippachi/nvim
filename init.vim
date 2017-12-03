@@ -35,6 +35,18 @@ if dein#check_install()
   call dein#install()
 endif
 
+nnoremap j gj
+nnoremap k gk
+
+noremap <silent> <C-c> <C-[>
+cnoremap <silent> <C-c> <esc>
+inoremap <silent> <C-c> <esc>
+
+noremap <silent> <C-l> $
+noremap <silent> <C-h> 0
+
+cmap <C-n> vs<cr>:sp<cr><C-w>l:sp<cr><C-w>j:ter<cr><C-\><C-n>
+
 
 syntax on
 set number
@@ -60,6 +72,9 @@ set wrapscan
 set hlsearch
 set virtualedit=onemore
 set autoindent
+set pumheight=10
+set updatetime=200
+
 filetype indent on
 
 let _curfile=expand("%:r")
@@ -69,48 +84,4 @@ endif
 
 autocmd BufWritePre * :%s/\s\+$//ge
 
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,ff :<C-u>:VimFiler<CR>
-nnoremap <silent> ,fe :<C-u>VimFilerExplore -split -winwidth=30 -find -no-quit<CR>
-
-
-function! s:get_syn_id(transparent)
-let synid = synID(line("."), col("."), 1)
-  if a:transparent
-return synIDtrans(synid)
-  else
-  return synid
-  endif
-  endfunction
-  function! s:get_syn_attr(synid)
-  let name = synIDattr(a:synid, "name")
-  let ctermfg = synIDattr(a:synid, "fg", "cterm")
-  let ctermbg = synIDattr(a:synid, "bg", "cterm")
-  let guifg = synIDattr(a:synid, "fg", "gui")
-  let guibg = synIDattr(a:synid, "bg", "gui")
-  return {
-    \ "name": name,
-      \ "ctermfg": ctermfg,
-      \ "ctermbg": ctermbg,
-      \ "guifg": guifg,
-      \ "guibg": guibg}
-      endfunction
-      function! s:get_syn_info()
-      let baseSyn = s:get_syn_attr(s:get_syn_id(0))
-      echo "name: " . baseSyn.name .
-      \ " ctermfg: " . baseSyn.ctermfg .
-      \ " ctermbg: " . baseSyn.ctermbg .
-      \ " guifg: " . baseSyn.guifg .
-      \ " guibg: " . baseSyn.guibg
-      let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
-      echo "link to"
-      echo "name: " . linkedSyn.name .
-      \ " ctermfg: " . linkedSyn.ctermfg .
-      \ " ctermbg: " . linkedSyn.ctermbg .
-      \ " guifg: " . linkedSyn.guifg .
-      \ " guibg: " . linkedSyn.guibg
-      endfunction
-      command! SyntaxInfo call s:get_syn_info()
+let g:python3_host_prog='/usr/bin/python3'
