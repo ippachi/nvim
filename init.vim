@@ -73,7 +73,9 @@ set hlsearch
 set virtualedit=onemore
 set autoindent
 set pumheight=10
-set updatetime=200
+set updatetime=500
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
 filetype indent on
 
