@@ -39,14 +39,15 @@ nnoremap j gj
 nnoremap k gk
 
 noremap <silent> <C-c> <C-[>
-cnoremap <silent> <C-c> <esc>
-inoremap <silent> <C-c> <esc>
+inoremap <silent> <C-c> <C-[>
+vnoremap <silent> <C-c> <C-[>
 
 noremap <silent> <C-l> $
 noremap <silent> <C-h> 0
 
-cmap <C-n> vs<cr>:sp<cr><C-w>l:sp<cr><C-w>j:ter<cr><C-\><C-n>
+nnoremap <silent> zj :FZF .<cr>
 
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
 syntax on
 set number
@@ -55,6 +56,7 @@ set ambiwidth=double
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set smartindent
 set hidden
 set history=50
@@ -74,16 +76,17 @@ set virtualedit=onemore
 set autoindent
 set pumheight=10
 set updatetime=500
-set laststatus=2
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
+set rtp+=~/.fzf
+set inccommand=split
+
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.c setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 filetype indent on
 
-let _curfile=expand("%:r")
-if _curfile == 'makefile' || 'Makefile'
-  set noexpandtab
-endif
-
 autocmd BufWritePre * :%s/\s\+$//ge
-
-let g:python3_host_prog='/usr/bin/python3'
